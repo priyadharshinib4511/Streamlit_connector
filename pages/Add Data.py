@@ -1,19 +1,15 @@
-# streamlit_app.py
-
 import streamlit as st
 import json
 
-
-from power_automate_connection import DuckDBConnection
+from power_automate_connection import PowerAutomateExcelConnection
 
 st.set_page_config(
-    page_title="Hello",
+    page_title="Add Data",
     page_icon="👋",
 )
 
-conn = st.experimental_connection("api", type=DuckDBConnection)
+conn = st.experimental_connection("api", type=PowerAutomateExcelConnection)
 data = conn.get_file_data().json()
-print(data)
 
 file_name =  []
 file_name_index = {}
@@ -23,38 +19,35 @@ for x in data:
     file_name_index[x["Name"]] = x
 
 option = st.selectbox(
-    'How would you like to be contacted?',
+    'Select the file',
     file_name)
 
 selected_file  = file_name_index[option]
 
 table = conn.get_table_data({"filePath": selected_file["Id"]}).json()
-print("here", table)
 st.write(table[0]["name"])
 
 columns = conn.get_table_header({"filePath": selected_file["Id"], "tableName": table[0]["name"]}).json()
 
-print(columns[0])
-
 column_data = list(columns[0].keys())
-
-print(column_data)
 
 column_data = column_data[2:]
 
+formData = {}
+
 with st.form("my_form"):
    st.write("Create File")
+   #construct form based on columns
    for x in column_data:
-      tableName = st.text_input(x)     
-    
-
-
-
-
-   # Every form must have a submit button.
+      formValue = st.text_input(x)
+      formData[x] = formValue   
    submitted = st.form_submit_button("Submit")
    if submitted:
-       conn = st.experimental_connection("api", type=DuckDBConnection)
-       conn.add_data({"fileName": fileName, "sheetName": sheetName })
+       conn = st.experimental_connection("api", type=PowerAutomateExcelConnection)
+       res = conn.add_data({"fileName": selected_file["Id"], "tableName": table[0]["name"], "row": formData })
+       if res.status_code == 200:
+        st.success('File Created Successfully')
+       else:
+        st.error('Something Went Wrong!')
 
 

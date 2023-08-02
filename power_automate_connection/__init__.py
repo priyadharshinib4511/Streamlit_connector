@@ -1,1 +1,1 @@
-from power_automate_connection.power_automate_connection import DuckDBConnection as DuckDBConnection
+from power_automate_connection.power_automate_connection import PowerAutomateExcelConnection as PowerAutomateExcelConnection
