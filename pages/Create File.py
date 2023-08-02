@@ -10,7 +10,7 @@ st.set_page_config(
 
 with st.form("my_form"):
    st.write("Create File")
-   fileName = st.text_input('File Name')
+   fileName = st.text_input('File Name (with .xlsx extension)')
    sheetName = st.text_input('Sheet Name ')
    # Every form must have a submit button.
    submitted = st.form_submit_button("Submit")
