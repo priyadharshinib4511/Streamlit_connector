@@ -46,7 +46,7 @@ with st.form("my_form"):
        conn = st.experimental_connection("api", type=PowerAutomateExcelConnection)
        res = conn.add_data({"fileName": selected_file["Id"], "tableName": table[0]["name"], "row": formData })
        if res.status_code == 200:
-        st.success('File Created Successfully')
+        st.success('Record Added Successfully')
        else:
         st.error('Something Went Wrong!')
 

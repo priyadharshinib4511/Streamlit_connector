@@ -56,7 +56,7 @@ if st.button('Update'):
         "data": new_df.to_dict('records')
     })
     if res.status_code == 200:
-        st.suceess('Record(s) Updated Successfully')
+        st.success('Record(s) Updated Successfully')
     else:
         st.error('Something Went Wrong!')
     streamlit_js_eval(js_expressions="parent.window.location.reload()")

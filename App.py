@@ -22,6 +22,7 @@ div[data-testid="metric-container"] {
    border-radius: 5px;
    color: rgb(30, 103, 119);
    overflow-wrap: break-word;
+   text
 }
 
 /* breakline for metric text         */
@@ -34,15 +35,15 @@ div[data-testid="metric-container"] > label[data-testid="stMetricLabel"] > div {
 """
 , unsafe_allow_html=True)
 
-st.metric(label="You can Create a File", value="")
+st.metric(label="1. You can Create a File", value="")
 
-st.metric(label="You can Create a Table", value="")
+st.metric(label="2. You can Create a Table", value="")
 
-st.metric(label="You can Add a record", value="")
+st.metric(label="3. You can Add a record", value="")
 
-st.metric(label="You can update record(s)", value="")
+st.metric(label="4. You can update record(s)", value="")
 
-st.metric(label="You can delete record(s)", value="")
+st.metric(label="5. You can delete record(s)", value="")
 
 
 
