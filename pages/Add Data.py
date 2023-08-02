@@ -25,7 +25,7 @@ option = st.selectbox(
 selected_file  = file_name_index[option]
 
 table = conn.get_table_data({"filePath": selected_file["Id"]}).json()
-st.write(table[0]["name"])
+st.write('Table Name : ' + table[0]["name"])
 
 columns = conn.get_table_header({"filePath": selected_file["Id"], "tableName": table[0]["name"]}).json()
 
@@ -36,7 +36,7 @@ column_data = column_data[2:]
 formData = {}
 
 with st.form("my_form"):
-   st.write("Create File")
+   st.write("Add Record")
    #construct form based on columns
    for x in column_data:
       formValue = st.text_input(x)

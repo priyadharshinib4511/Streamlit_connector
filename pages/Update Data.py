@@ -32,7 +32,7 @@ option = st.selectbox(
 selected_file  = file_name_index[option]
 
 table = conn.get_table_data({"filepath": selected_file["Id"]}).json()
-st.write(table[0]["name"])
+st.write('Table Name : ' + table[0]["name"])
 
 data = conn.get_table_values({"fileId": selected_file["Id"], "tableName": table[0]["name"]}).json()
 
