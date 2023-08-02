@@ -28,7 +28,7 @@ selected_file  = file_name_index[option]
 with st.form("my_form"):
    st.write("Create File")
    tableName = st.text_input('Table Name')
-   columnName = st.text_input('Column Name ')
+   columnName = st.text_input('Column Names (Enter comma (,) separated values)')
    # Every form must have a submit button.
    submitted = st.form_submit_button("Submit")
    if submitted:
